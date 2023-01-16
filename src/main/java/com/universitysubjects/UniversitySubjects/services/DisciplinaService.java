@@ -1,6 +1,7 @@
 package com.universitysubjects.UniversitySubjects.services;
 
 import com.universitysubjects.UniversitySubjects.entities.Disciplina;
+import com.universitysubjects.UniversitySubjects.entities.Professor;
 import com.universitysubjects.UniversitySubjects.repositories.DisciplinaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -63,6 +64,10 @@ public class DisciplinaService {
         }
         Disciplina disciplina = disciplinaRepository.findDisciplinaByCodigo(codigoDisciplina).get();
         disciplina.setConceito(conceito);
+    }
+
+    public Professor getProfessorByCodigo(String codigo) {
+        return disciplinaRepository.getProfessorByCodigo(codigo);
     }
 
 }

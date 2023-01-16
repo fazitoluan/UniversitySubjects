@@ -25,4 +25,8 @@ public class Disciplina {
     private Character conceito;
     private String codigo;
 
+    @ManyToOne(optional = false)
+    @JoinColumn
+    private Professor professor;
+
 }

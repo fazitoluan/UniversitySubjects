@@ -1,6 +1,7 @@
 package com.universitysubjects.UniversitySubjects.repositories;
 
 import com.universitysubjects.UniversitySubjects.entities.Disciplina;
+import com.universitysubjects.UniversitySubjects.entities.Professor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -34,4 +35,7 @@ public interface DisciplinaRepository extends JpaRepository<Disciplina, Long> {
             "WHERE d.ano NOT IN (2020) " +
                 "AND (d.ano <> 2021 OR (d.periodo NOT IN ('1', '2')))")
     Integer sumPesoMultByCreditoEspecial();
+
+    @Query("SELECT d.professor FROM Disciplina d WHERE d.codigo = ?1")
+    Professor getProfessorByCodigo(String codigo);
 }

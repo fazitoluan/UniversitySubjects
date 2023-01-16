@@ -1,6 +1,7 @@
 package com.universitysubjects.UniversitySubjects.controllers;
 
 import com.universitysubjects.UniversitySubjects.entities.Disciplina;
+import com.universitysubjects.UniversitySubjects.entities.Professor;
 import com.universitysubjects.UniversitySubjects.services.DisciplinaService;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,6 +56,11 @@ public class DisciplinaController {
     public void updateGrade(@PathVariable("codigo") String codigoDisciplina,
                             @RequestParam Character conceito) {
         disciplinaService.updateGrade(codigoDisciplina, conceito);
+    }
+
+    @GetMapping(path = "{codigo}/professor")
+    public Professor getProfessorByCodigo(@PathVariable("codigo") String codigo) {
+        return disciplinaService.getProfessorByCodigo(codigo);
     }
 
 
