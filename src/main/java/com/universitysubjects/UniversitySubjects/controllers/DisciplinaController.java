@@ -4,6 +4,7 @@ import com.universitysubjects.UniversitySubjects.entities.Disciplina;
 import com.universitysubjects.UniversitySubjects.entities.Professor;
 import com.universitysubjects.UniversitySubjects.services.DisciplinaService;
 import org.springframework.web.bind.annotation.*;
+import java.util.Optional;
 
 import java.util.List;
 
@@ -27,11 +28,6 @@ public class DisciplinaController {
         disciplinaService.addDisciplina(disciplina);
     }
 
-    @DeleteMapping(path = "{codigo}")
-    public void deleteDisciplina(@PathVariable String codigo) {
-        disciplinaService.deleteDisciplina(codigo);
-    }
-
     @GetMapping(path = "totalCreditos")
     public Integer showTotalCreditos() {
         return disciplinaService.showTotalCreditos();
@@ -52,16 +48,25 @@ public class DisciplinaController {
         return disciplinaService.showCoeficienteRendimentoEspecial();
     }
 
+    @GetMapping(path = "{codigo}/professor")
+    public Professor getProfessorByCodigo(@PathVariable("codigo") String codigo) {
+        return disciplinaService.getProfessorByCodigo(codigo);
+    }
+
+    @GetMapping(path = "codigo/{codigo}")
+    public Optional<Disciplina> getDisciplinaByCodigo(@PathVariable("codigo") String codigo) {
+        return disciplinaService.getDisciplinaByCodigo(codigo);
+    }
+
     @PutMapping(path = "{codigo}")
     public void updateGrade(@PathVariable("codigo") String codigoDisciplina,
                             @RequestParam Character conceito) {
         disciplinaService.updateGrade(codigoDisciplina, conceito);
     }
 
-    @GetMapping(path = "{codigo}/professor")
-    public Professor getProfessorByCodigo(@PathVariable("codigo") String codigo) {
-        return disciplinaService.getProfessorByCodigo(codigo);
+    @DeleteMapping(path = "{codigo}")
+    public void deleteDisciplina(@PathVariable String codigo) {
+        disciplinaService.deleteDisciplina(codigo);
     }
-
 
 }

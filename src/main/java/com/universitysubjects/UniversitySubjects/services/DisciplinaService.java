@@ -70,4 +70,7 @@ public class DisciplinaService {
         return disciplinaRepository.getProfessorByCodigo(codigo);
     }
 
+    public Optional<Disciplina> getDisciplinaByCodigo(String codigo) {
+        return disciplinaRepository.findDisciplinaByCodigo(codigo);
+    }
 }
